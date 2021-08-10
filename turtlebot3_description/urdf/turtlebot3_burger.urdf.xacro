@@ -1,0 +1,206 @@
+<?xml version="1.0" ?>
+<robot name="turtlebot3_burger" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find turtlebot3_description)/urdf/common_properties.xacro"/>
+  <xacro:include filename="$(find turtlebot3_description)/urdf/turtlebot3_burger.gazebo.xacro"/>
+
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 0.014" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/bases/base_link.STL"/>
+      </geometry>
+      <material name="light_black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+       <mesh
+          filename="package://turtlebot3_description/meshes/bases/base_link.STL"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin 
+        xyz="-0.00053554 -0.00072835 0.81804"
+        rpy="0 0 0"/>
+      <mass value="21.351"/>
+      <inertia 
+        ixx="1.9402"
+        ixy="-2.1004E-05"
+        ixz="-3.566E-07"
+        iyy="1.9403"
+        iyz="1.6662E-06"
+        izz="0.061579" />
+    </inertial>
+  </link>
+
+  <joint name="wheel_left_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_left_link"/>
+    <origin
+      xyz="-0.055483 0.096103 0.035"
+      rpy="1.5708 0.51042 0.5236" />
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="wheel_left_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/wheels/wheel_left_link.STL" />
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh
+          filename="package://turtlebot3_description/meshes/wheels/wheel_left_link.STL" />
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin 
+        xyz="-1.0847E-05 -6.202E-06 -0.090835"
+        rpy="0 0 0" />
+      <mass value="0.22052" />
+      <inertia 
+        ixx="5.4192E-05"
+        ixy="-1.0371E-09"
+        ixz="2.3577E-09"
+        iyy="5.4197E-05"
+        iyz="-1.3357E-08"
+        izz="8.5639E-05" />
+      </inertial>
+  </link>
+
+  <joint name="wheel_right_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_right_link"/>
+    <origin 
+      xyz="-0.092626 -0.16042 0.035"
+      rpy="-1.5708 1.4201 -0.5236"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="wheel_right_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/wheels/wheel_right_link.STL"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/wheels/wheel_right_link.STL"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin 
+        xyz="-1.0847E-05 -6.2009E-06 -0.016547"
+        rpy="0 0 0"/>
+      <mass value="0.22052" />
+      <inertia 
+        ixx="5.4192E-05"
+        ixy="-1.0369E-09"
+        ixz="2.3574E-09"
+        iyy="5.4197E-05"
+        iyz="-1.3358E-08"
+        izz="8.5639E-05" />
+      </inertial>
+  </link>
+
+  <joint name="wheel_front_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_front_link"/>
+    <origin 
+      xyz="0.172 0 0.035"
+      rpy="-1.5708 1.1188 1.5708"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="wheel_front_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/wheels/wheel_front_link.STL"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/wheels/wheel_front_link.STL"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin  
+        xyz="-8.1328E-06 -1.1792E-05 -0.029797"
+        rpy="0 0 0"/>
+      <mass value="0.22052" />
+      <inertia 
+        ixx="5.4192E-05"
+        ixy="-1.037E-09"
+        ixz="2.3576E-09"
+        iyy="5.4197E-05"
+        iyz="-1.3357E-08"
+        izz="8.5639E-05" />
+      </inertial>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="-0.032 0 0.24" rpy="0 0 0"/>
+  </joint>
+
+  <link name="imu_link"/>
+
+  <joint name="scan_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_scan"/>
+    <origin xyz="0 0 0.31" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_scan">
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 90"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/sensors/lds.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.015 0 -0.0065" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0315" radius="0.055"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="0.114" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+               iyy="0.001" iyz="0.0"
+               izz="0.001" />
+    </inertial>
+  </link>
+
+</robot>
